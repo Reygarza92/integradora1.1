@@ -43,112 +43,81 @@ if (isset($_POST["ejecucion"])){
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="css/contra.css">
   </head>
   <body>
     <!-- HEADER -->
-    <header>
+  <header>
       <nav class="navbar">
           <span class="hamburger-btn material-symbols-rounded">menu</span>
-          <a href="#" class="logo">
-              <h2>YoChambeo</h2>
-          </a>
           <ul class="links">
               <span class="close-btn material-symbols-rounded">close</span>
-              <li><a href="index.html">Home</a></li>
+              <li><a href="#">Home</a></li>
               <li><a href="#">Portfolio</a></li>
-              <li><a href="devdestiny.html">DevDestiny</a></li>
+              <li><a href="#">DevDestiny</a></li>
               <li><a href="#">Contacto</a></li>
           </ul>
-          <button class="login-btn">Inicio de sesion</button>
+          <button class="login-btn">LOG IN</button>
       </nav>
   </header>
-
   <div class="blur-bg-overlay"></div>
   <div class="form-popup">
       <span class="close-btn material-symbols-rounded">close</span>
       <div class="form-box login">
           <div class="form-details">
-              <h2>Bienvenido de regreso</h2>
-              <p>Conectate para empezar.</p>
+              <h2>Welcome Back</h2>
+              <p>Please log in using your personal information to stay connected with us.</p>
           </div>
           <div class="form-content">
-              <h2>INICIO DE SESION</h2>
-              <form action="#" method="post"3>
+              <h2>LOGIN</h2>
+              <form action="#">
                   <div class="input-field">
-                      <input name="email" type="text" required>
-                      <label>Correo electronico</label>
+                      <input type="text" required>
+                      <label>Email</label>
                   </div>
                   <div class="input-field">
-                      <input name="password" type="password" required>
-                      <label>Contrasena</label>
+                      <input type="password" required>
+                      <label>Password</label>
                   </div>
-                  <a href="#" class="forgot-pass-link">Olvidaste tu contrasena?</a>
-                  <button type="submit" name="ejecucion" value="login">Iniciar sesion</button>
+                  <a href="#" class="forgot-pass-link">Forgot password?</a>
+                  <button type="submit">Log In</button>
               </form>
               <div class="bottom-link">
-                  No tienes cuenta?
-                  <a href="#" id="signup-link">Crear cuenta</a>
+                  Don't have an account?
+                  <a href="#" id="signup-link">Signup</a>
               </div>
           </div>
       </div>
       <div class="form-box signup">
           <div class="form-details">
-              <h2>Crear cuenta</h2>
-              <p>Forma parte de nosotros</p>
+              <h2>Create Account</h2>
+              <p>To become a part of our community, please sign up using your personal information.</p>
           </div>
           <div class="form-content">
-              <h2>Registrarse</h2>
+              <h2>SIGNUP</h2>
               <form action="#">
                   <div class="input-field">
                       <input type="text" required>
-                      <label>Ingresa tu correo electronico</label>
+                      <label>Enter your email</label>
                   </div>
-                  <div class="pass-field">
                   <div class="input-field">
                       <input type="password" required>
-                      <label>Crear contrasena</label>
+                      <label>Create password</label>
                   </div>
-                  
-                  <div class="content">
-                      <p>Su contrasena debe contener</p>
-                      <ul class="requirement-list">
-                        <li>
-                          <i class="fa-solid fa-circle"></i>
-                          <span>Al menos 8 caracteres</span>
-                        </li>
-                        <li>
-                          <i class="fa-solid fa-circle"></i>
-                          <span>Al menos un numero (0...9)</span>
-                        </li>
-                        <li>
-                          <i class="fa-solid fa-circle"></i>
-                          <span>Al menos una letra minuscula (a...z)</span>
-                        </li>
-                        <li>
-                          <i class="fa-solid fa-circle"></i>
-                          <span>Al menos un simbolo (!...$)</span>
-                        </li>
-                        <li>
-                          <i class="fa-solid fa-circle"></i>
-                          <span>Al menos una letra mayuscula (A...Z)</span>
-                        </li>
-                      </ul>
-                    </div>
-                    </div>
                   <div class="policy-text">
                       <input type="checkbox" id="policy">
                       <label for="policy">
-                          Acepto los
-                          <a href="#" class="option">Terminos & Condiciones</a>
+                          I agree the
+                          <a href="#" class="option">Terms & Conditions</a>
                       </label>
                   </div>
-                  <button type="submit">Registrarse</button>
+                  <button type="submit">Sign Up</button>
               </form>
               <div class="bottom-link">
-                  Ya tienes cuenta? 
-                  <a href="#" id="login-link">Iniciar sesion</a>
+                  Already have an account? 
+                  <a href="#" id="login-link">Login</a>
               </div>
           </div>
       </div>
