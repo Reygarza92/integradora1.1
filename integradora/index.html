@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>YoChambeo</title>
+    <link
+      rel="stylesheet"
+      href="https://assets.codepen.io/7773162/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="css/contra.css">
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar">
+          <span class="hamburger-btn material-symbols-rounded">menu</span>
+          <a href="#" class="logo">
+              <h2>YoChambeo</h2>
+          </a>
+          <ul class="links">
+              <span class="close-btn material-symbols-rounded">close</span>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">Portfolio</a></li>
+              <li><a href="devdestiny.html">DevDestiny</a></li>
+              <li><a href="#">Contacto</a></li>
+          </ul>
+          <button class="login-btn">Inicio de sesion</button>
+      </nav>
+  </header>
+
+  <div class="blur-bg-overlay"></div>
+  <div class="form-popup">
+      <span class="close-btn material-symbols-rounded">close</span>
+      <div class="form-box login">
+          <div class="form-details">
+              <h2>Bienvenido de regreso</h2>
+              <p>Conectate para empezar.</p>
+          </div>
+          <div class="form-content">
+              <h2>INICIO DE SESION</h2>
+              <form action="#">
+                  <div class="input-field">
+                      <input type="text" required>
+                      <label>Correo electronico</label>
+                  </div>
+                  <div class="input-field">
+                      <input type="password" required>
+                      <label>Contrasena</label>
+                  </div>
+                  <a href="#" class="forgot-pass-link">Olvidaste tu contrasena?</a>
+                  <button type="submit">Iniciar sesion</button>
+              </form>
+              <div class="bottom-link">
+                  No tienes cuenta?
+                  <a href="#" id="signup-link">Crear cuenta</a>
+              </div>
+          </div>
+      </div>
+      <div class="form-box signup">
+          <div class="form-details">
+              <h2>Crear cuenta</h2>
+              <p>Forma parte de nosotros</p>
+          </div>
+          <div class="form-content">
+              <h2>Registrarse</h2>
+              <form action="#">
+                  <div class="input-field">
+                      <input type="text" required>
+                      <label>Ingresa tu correo electronico</label>
+                  </div>
+                  <div class="pass-field">
+                  <div class="input-field">
+                      <input type="password" required>
+                      <label>Crear contrasena</label>
+                  </div>
+                  
+                  <div class="content">
+                      <p>Su contrasena debe contener</p>
+                      <ul class="requirement-list">
+                        <li>
+                          <i class="fa-solid fa-circle"></i>
+                          <span>Al menos 8 caracteres</span>
+                        </li>
+                        <li>
+                          <i class="fa-solid fa-circle"></i>
+                          <span>Al menos un numero (0...9)</span>
+                        </li>
+                        <li>
+                          <i class="fa-solid fa-circle"></i>
+                          <span>Al menos una letra minuscula (a...z)</span>
+                        </li>
+                        <li>
+                          <i class="fa-solid fa-circle"></i>
+                          <span>Al menos un simbolo (!...$)</span>
+                        </li>
+                        <li>
+                          <i class="fa-solid fa-circle"></i>
+                          <span>Al menos una letra mayuscula (A...Z)</span>
+                        </li>
+                      </ul>
+                    </div>
+                    </div>
+                  <div class="policy-text">
+                      <input type="checkbox" id="policy">
+                      <label for="policy">
+                          Acepto los
+                          <a href="#" class="option">Terminos & Condiciones</a>
+                      </label>
+                  </div>
+                  <button type="submit">Registrarse</button>
+              </form>
+              <div class="bottom-link">
+                  Ya tienes cuenta? 
+                  <a href="#" id="login-link">Iniciar sesion</a>
+              </div>
+          </div>
+      </div>
+  </div>
+    <main class="main">
+      <!-- HOME -->
+      <section class="home container" id="home">
+        <div class="swiper home-swiper">
+          <div class="swiper-wrapper">
+            <!-- HOME SLIDER 1 -->
+            <section class="swiper-slide">
+              <div class="home__content grid">
+                <div class="home__group">
+                  <img
+                    src="img/YoChambeoLOGO.png"
+                    alt=""
+                    class="home__img" /> 
+                  <div class="home__details-img">
+                  </div>
+                </div>
+                <div class="home__data">
+                  <h1 class="home__title">
+                    Un <br />
+                    Trabajo <br />
+                    realizado
+                  </h1>
+                  <p class="home__description">
+                    Buscas quien ofrezca un trabajo por tus habilidades o Buscas
+                    quien tenga las habilidades para hacerlo estas en el lugar correcto
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+      <!-- CATEGORY -->
+      <section class="section category">
+        <h2 class="section__title">
+          Mas buscados <br />
+        </h2>
+        <div class="category__container container grid">
+          <div class="category__data">
+            <img
+              src="img/albanil.png"
+              alt=""
+              class="category__img"
+            />
+            <h3 class="category__title">Albañileria</h3>
+            <p class="category__description">
+              Todo lo relacionado a los trabajos de construccion.
+            </p>
+          </div>
+          <div class="category__data">
+            <img
+              src="img/carpinteria.png"
+              alt=""
+              class="category__img"
+            />
+            <h3 class="category__title">carpinteria</h3>
+            <p class="category__description">
+              Todo lo relacionado a trabajos de madera.
+            </p>
+          </div>
+          <div class="category__data">
+            <img
+              src="img/plomeria.png"
+              alt=""
+              class="category__img"
+            />
+            <h3 class="category__title">Plomeria</h3>
+            <p class="category__description">
+              Todo lo relacionado a trabajos de plomeria.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- ABOUT 
+      <section class="section about" id="about">
+        <div class="about__container container grid">
+          <div class="about__data">
+            <h2 class="section__title about__title">
+              About Halloween <br />
+              Night
+            </h2>
+            <p class="about__description">
+              Night of all the saints, or all the dead, is celebrated on October
+              31 and it is a very fun international celebration, this
+              celebration comes from ancient origins, and is already celebrated
+              by everyone.
+            </p>
+            <a href="#" class="book--now">
+              <img
+                src="https://assets.codepen.io/7773162/svgviewer-output+%281%29_3.svg"
+                alt=""
+              />
+            </a>
+          </div>
+          <img
+            src="https://assets.codepen.io/7773162/about-img.png"
+            alt=""
+            class="about__img"
+          />
+        </div>
+      </section>-->
+
+      <!-- Trabajos-->
+      <section class="section trick" id="trick">
+        <h2 class="section__title">Trabajos</h2>
+        <div class="trick__container container grid">
+          
+          <div class="trick__content">
+                            <img
+                  class="new__img"
+              src="img/carpinteria.png"
+              alt=""
+              class="trick__img"
+            />
+            <h3 class="trick__title">Closet</h3>
+            <span class="trick__subtitle">Carpinteria</span>
+            <span class="trick__price">$ A tratar</span>
+            <button class="button trick__button">
+              <i class="bx bx-cart-alt trick__icon"></i>
+            </button>
+          </div>
+          <div class="trick__content">
+            <img
+              src="img/albanil.png"
+              alt=""
+              class="trick__img"
+            />
+            <h3 class="trick__title">Pared</h3>
+            <span class="trick__subtitle">Albañileria</span>
+            <span class="trick__price">$8.99</span>
+            <button class="button trick__button">
+              <i class="bx bx-cart-alt trick__icon"></i>
+            </button>
+          </div>
+          <div class="trick__content">
+            <img
+              src="img/plomeria.png"
+              alt=""
+              class="trick__img"
+            />
+            <h3 class="trick__title">1234</h3>
+            <span class="trick__subtitle">plomeria</span>
+            <span class="trick__price">$1500</span>
+            <button class="button trick__button">
+              <i class="bx bx-cart-alt trick__icon"></i>
+            </button>
+          </div>
+          <div class="trick__content">
+            <img
+              src="img/albanil.png"
+              alt=""
+              class="trick__img"
+            />
+            <h3 class="trick__title">hola</h3>
+            <span class="trick__subtitle">Albañileria</span>
+            <span class="trick__price">$799</span>
+            <button class="button trick__button">
+              <i class="bx bx-cart-alt trick__icon"></i>
+            </button>
+          </div>
+          <div class="trick__content">
+            <img
+              src="img/plomeria.png"
+              alt=""
+              class="trick__img"
+            />
+            <h3 class="trick__title">hola1</h3>
+            <span class="trick__subtitle">plomeria</span>
+            <span class="trick__price">$199</span>
+            <button class="button trick__button">
+              <i class="bx bx-cart-alt trick__icon"></i>
+            </button>
+          </div>
+          <div class="trick__content">
+            <img
+              src="img/carpinteria.png"
+              alt=""
+              class="trick__img"
+            />
+            <h3 class="trick__title">hola2</h3>
+            <span class="trick__subtitle">Carpinteria</span>
+            <span class="trick__price">$1799</span>
+            <button class="button trick__button">
+              <i class="bx bx-cart-alt trick__icon"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- NEW ARRIVALS -->
+      <section class="section new" id="new">
+        <h2 class="section__title">Trabajadores destacados</h2>
+        <div class="new__container container">
+          <div class="swiper new-swiper">
+            <div class="swiper-wrapper">
+              <div class="new__content swiper-slide">
+
+                <img
+                  src="img/user.png"
+                  alt=""
+                  class="new__img"
+                />
+                <h3 class="new__title">Reynaldo</h3>
+                <span class="new__subtitle">Accessory</span>
+                <div class="new__prices">
+                  <span class="new__price">$14.99</span>
+                </div>
+                <button class="button new__button">
+                  <i class="bx bx-cart-alt new__icon"></i>
+                </button>
+              </div>
+              <div class="new__content swiper-slide">
+                <div class="new__tag">
+                  <img
+                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
+                    alt=""
+                  />
+                </div>
+                <img
+                  src="img/user.png"
+                  alt=""
+                  class="new__img"
+                />
+                <h3 class="new__title">Jose</h3>
+                <span class="new__subtitle">Accessory</span>
+                <div class="new__prices">
+                  <span class="new__price">$11.99</span>
+                </div>
+                <button class="button new__button">
+                  <i class="bx bx-cart-alt new__icon"></i>
+                </button>
+              </div>
+              <div class="new__content swiper-slide">
+                <div class="new__tag">
+                  <img
+                    src="img/user.png"
+                    alt=""
+                  />
+                </div>
+                <img
+                  src="https://assets.codepen.io/7773162/new3-img.png"
+                  alt=""
+                  class="new__img"
+                />
+                <h3 class="new__title">Witch Hat</h3>
+                <span class="new__subtitle">Accessory</span>
+                <div class="new__prices">
+                  <span class="new__price">$4.99</span>
+                </div>
+                <button class="button new__button">
+                  <i class="bx bx-cart-alt new__icon"></i>
+                </button>
+              </div>
+              <div class="new__content swiper-slide">
+                <div class="new__tag">
+                  <img
+                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
+                    alt=""
+                  />
+                </div>
+                <img
+                  src="https://assets.codepen.io/7773162/new4-img.png"
+                  alt=""
+                  class="new__img"
+                />
+                <h3 class="new__title">Rip</h3>
+                <span class="new__subtitle">Accessory</span>
+                <div class="new__prices">
+                  <span class="new__price">$24.99</span>
+                </div>
+                <button class="button new__button">
+                  <i class="bx bx-cart-alt new__icon"></i>
+                </button>
+              </div>
+              <div class="new__content swiper-slide">
+                <div class="new__tag">
+                  <img
+                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
+                    alt=""
+                  />
+                </div>
+                <img
+                  src="https://assets.codepen.io/7773162/new5-img.png"
+                  alt=""
+                  class="new__img"
+                />
+                <h3 class="new__title">Maria</h3>
+                <span class="new__subtitle">Accessory</span>
+                <div class="new__prices">
+                  <span class="new__price">$5.99</span>
+                </div>
+                <button class="button new__button">
+                  <i class="bx bx-cart-alt new__icon"></i>
+                </button>
+              </div>
+              <div class="new__content swiper-slide">
+                <div class="new__tag">
+                  <img
+                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
+                    alt=""
+                  />
+                </div>
+                <img
+                  src="img/user.png"
+                  alt=""
+                  class="new__img"
+                />
+                <h3 class="new__title">Ramon</h3>
+                <span class="new__subtitle">Accessory</span>
+                <div class="new__prices">
+                  <span class="new__price">$7.99</span>
+                </div>
+                <button class="button new__button">
+                  <i class="bx bx-cart-alt new__icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- OUR NEWSLETTER -->
+      <section class="section newsletter">
+        <div class="newsletter__container container">
+          <h2 class="section__title">Notificacion a correo</h2>
+          <p class="newsletter__description">
+            Trabajos nuevos directo a tu correo
+          </p>
+          <form action="" class="newsletter__form">
+            <input
+              type="text"
+              placeholder="Enter your email"
+              class="newsletter__input"
+            />
+            <a href="/" class="bn3637 bn36">Button</a>
+          </form>
+        </div>
+      </section>
+    </main>
+    <!-- SCROLL UP -->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class="bx bx-up-arrow-alt scrollup__icon"></i>
+    </a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.2/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
+    <script src="./script.js"></script>
+    <script src="js/contra.js"></script>
+  </body>
+</html>
