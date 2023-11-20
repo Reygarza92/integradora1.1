@@ -52,6 +52,7 @@ if (isset($_POST["ejecucion"])){
   <header>
       <nav class="navbar">
           <span class="hamburger-btn material-symbols-rounded">menu</span>
+          <img src="img/YoChambeoLOGO.png" style="width:10%">
           <ul class="links">
               <span class="close-btn material-symbols-rounded">close</span>
               <li><a href="#">Home</a></li>
