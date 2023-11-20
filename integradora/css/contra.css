@@ -1,36 +1,40 @@
 /* Importing Google font - Open Sans */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
-.container{
-    width: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
 }
-.content-container {
-    margin-top: 80px; 
-  }
+
+body {
+    height: 100vh;
+    width: 100%;
+    
+}
 
 header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 10;
     padding: 0 10px;
 }
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100%; /* Ajusta según tus necesidades */
-    height: 50px; /* Ajusta según la altura de tu navbar */
-    margin-bottom: 10px;
-    padding: 15px 0;
+    display: flex;
+    padding: 22px 0;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
 }
 
 .navbar .hamburger-btn {
     display: none;
-    color: black;
+ 
     cursor: pointer;
     font-size: 1.5rem;
 }
@@ -107,9 +111,9 @@ header {
     opacity: 0;
     pointer-events: none;
     max-width: 720px;
+    background: #fff;
     border: 2px solid #fff;
     transform: translate(-50%, -70%);
-    background-color: #fff;
 }
 
 .show-popup .form-popup {
@@ -313,7 +317,7 @@ form button:hover {
         width: 100%;
         padding-top: 60px;
         text-align: center;
-        background: #000000;
+        background: #fff;
         transition: 0.2s ease;
     }
 
