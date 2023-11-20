@@ -98,7 +98,7 @@ IN ubication VARCHAR(60),
 IN userID INT
 )
 BEGIN
-SELECT VI.titulo, VI.descripcion, UB.localidad, DATEDIFF(VI.fecha, CURRENT_TIMESTAMP) as diasVacante, UG.nombre
+SELECT VI.titulo AS titulo, SI.servicio AS servicio, VI.descripcion AS descripcion, VI.pago AS pago, UB.localidad AS localidad, DATEDIFF(VI.fecha, CURRENT_TIMESTAMP) as diasVacante, UG.nombre AS nombre
 FROM vacante_info VI
 LEFT JOIN usuarios_general UG on VI.id_usuario = UG.id_usuario
 LEFT JOIN usuarios_info UI on VI.id_usuario = UI.id_usuario
@@ -119,6 +119,24 @@ DELIMITER ;
 CALL lookup_vacant ('VacanteEjemplo', 'LocalidadEjemplo');
 
 /* Aquí los datos de la vacante y la localidad se seleccionan en recuadros que dan opciones, después se ejecuta un botón que busca y realiza ese query */
+
+-- MUESTRA DE VACANTES (GENERAL)
+
+DELIMITER //
+CREATE PROCEDURE vacants(
+)
+BEGIN
+SELECT VI.titulo AS titulo, SI.servicio AS servicio, VI.descripcion AS descripcion, VI.pago AS pago, UB.localidad AS localidad, DATEDIFF(VI.fecha, CURRENT_TIMESTAMP) AS diasVacante, UG.nombre AS nombre
+FROM vacante_info VI
+LEFT JOIN usuarios_general UG on VI.id_usuario = UG.id_usuario
+LEFT JOIN usuarios_info UI on VI.id_usuario = UI.id_usuario
+LEFT JOIN servicios_info SI on VI.id_servicio = SI.id_servicio
+LEFT JOIN ubicaciones UB on VI.id_localidad = UB.id_localidad
+WHERE vacante = TRUE;
+END
+//
+DELIMITER ;
+
 
 -- DECLARAR TRABAJO COMO TERMINADO
 /* Para que el trabajo sea declarado como terminado, ambas partes deben de confirmar que completaron */
@@ -338,16 +356,59 @@ CREATE PROCEDURE show_best_workers(
     IN serviceIN VARCHAR(30)
 )
 BEGIN
-SELECT UG.id_usuario AS id_usuario, UG.nombre AS nombre
+SELECT UG.id_usuario AS id_usuario, UG.nombre AS nombre, C.calificacion_trabajador AS calificacion
 FROM usuarios_general UG
 LEFT JOIN calificaciones C ON UG.id_usuario = C.id_usuario
 LEFT JOIN servicios_ofrecidos SO ON UG.id_usuario = SO.id_usuario
 LEFT JOIN servicios_info SI ON SO.id_servicio = SI.id_servicio
 WHERE SI.servcio = serviceIN
-ORDER BY calificacion_trabajador;
+AND C.calificacion_trabajador OR C.calificacion_empleador IS NOT NULL
+ORDER BY calificacion_trabajador DESC;
 END;
 //
 DELIMITER ;
+
+-- Mejores trabajadores y su servicio ofrecido
+
+DELIMITER //
+CREATE PROCEDURE best_workers(
+)
+BEGIN
+SELECT UG.id_usuario AS id_usuario, UG.nombre AS nombre, SI.servicio AS servicio, C.calificacion_trabajador AS calificacion
+FROM usuarios_general UG
+LEFT JOIN calificaciones C ON UG.id_usuario = C.id_usuario
+LEFT JOIN servicios_ofrecidos SO ON UG.id_usuario = SO.id_usuario
+LEFT JOIN servicios_info SI ON SO.id_servicio = SI.id_servicio
+WHERE C.calificacion_trabajador OR C.calificacion_empleador IS NOT NULL
+ORDER BY calificacion_trabajador DESC;
+END;
+//
+DELIMITER ;
+
+-- PROCEDIMIENTO DE CONTEO (Vacantes)
+
+DELIMITER //
+CREATE PROCEDURE count_vacants(
+)
+BEGIN
+CALL vacants();
+SELECT FOUND_ROWS() AS 'conteo_vacante';
+END;
+//
+DELIMITER ;
+
+-- PROCEDIMIENTO DE CONTEO (Trabajadores)
+
+DELIMITER //
+CREATE PROCEDURE count_worker(
+)
+BEGIN
+CALL best_workers();
+SELECT FOUND_ROWS() AS 'conteo_trabajadores';
+END;
+//
+DELIMITER ;
+
 
 --  _____   ____    ___    ____    ____   _____   ____    ____  
 -- |_   _| |  _ \  |_ _|  / ___|  / ___| | ____| |  _ \  / ___| 

@@ -1,4 +1,35 @@
 <!DOCTYPE html>
+<?php
+include("conexion.php");
+/*$queryCounterWorker = "CALL count_worker;";
+$resultCounterWorker = mysqli_query($conexion, $queryCounterWorker);
+$columnCntWrk = mysqli_fetch_array($resultCounterWorker);
+$counterWorkers = $columnCntWrk['conteo_trabajadores'];
+mysqli_free_result($resultCounterWorker);
+// Free any additional result sets
+while (mysqli_next_result($conexion)) {
+  if ($result = mysqli_store_result($conexion)) {
+      mysqli_free_result($result);
+  }
+}
+if (isset($_POST["ejecucion"])){
+  $ejecucion = $_POST["ejecucion"];
+  switch ($ejecucion){
+    case 'login':
+      $correo = $_POST["email"];
+      $contrasena = $_POST["password"];
+      $query = "CALL log_in ('$correo','$contrasena');";
+      $resultado = mysqli_query($conexion, $query);
+      $columna = mysqli_fetch_array($resultado);
+      $id_usuario = $columna['id_usuario'];
+      if ($id_usuario != NULL){
+        echo "Bienvenido";
+      } else {
+        echo "Verifica los datos ingresados o registrate";
+      }
+  }
+}*/
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -44,17 +75,17 @@
           </div>
           <div class="form-content">
               <h2>INICIO DE SESION</h2>
-              <form action="#">
+              <form action="#" method="post"3>
                   <div class="input-field">
-                      <input type="text" required>
+                      <input name="email" type="text" required>
                       <label>Correo electronico</label>
                   </div>
                   <div class="input-field">
-                      <input type="password" required>
+                      <input name="password" type="password" required>
                       <label>Contrasena</label>
                   </div>
                   <a href="#" class="forgot-pass-link">Olvidaste tu contrasena?</a>
-                  <button type="submit">Iniciar sesion</button>
+                  <button type="submit" name="ejecucion" value="login">Iniciar sesion</button>
               </form>
               <div class="bottom-link">
                   No tienes cuenta?
@@ -129,27 +160,31 @@
           <div class="swiper-wrapper">
             <!-- HOME SLIDER 1 -->
             <section class="swiper-slide">
-              <div class="home__content grid">
+              <div class="home__content grid" style="align-items:center">
                 <div class="home__group">
                   <img
                     src="img/YoChambeoLOGO.png"
                     alt=""
-                    class="home__img" /> 
+                    style="width = 100%"
+                    class="" /> 
                   <div class="home__details-img">
                   </div>
                 </div>
                 <div class="home__data">
                   <h1 class="home__title">
-                    Un <br />
-                    Trabajo <br />
-                    realizado
+                    Un trabajo BIEN hecho
                   </h1>
-                  <p class="home__description">
-                    Buscas quien ofrezca un trabajo por tus habilidades o Buscas
-                    quien tenga las habilidades para hacerlo estas en el lugar correcto
-                  </p>
                 </div>
               </div>
+              <p class="home__description">
+                  <b>¡Bienvenido a YoChambeo!</b><br />
+                  <br />
+                  En YoChambeo, conectamos tus necesidades con habilidades excepcionales. ¿Buscas un plomero, albañil, carpintero o cualquier otro profesional para hacer el trabajo? ¡Estás en el lugar indicado! Explora nuestra plataforma para encontrar expertos confiables y calificados que se encargarán de tus proyectos con dedicación y eficiencia.<br />
+                  <br />
+                  ¿Eres un profesional en busca de oportunidades para mostrar tus habilidades? Únete a nuestra comunidad y promociona tus servicios. En YoChambeo, creemos en la calidad del trabajo y en hacer conexiones que beneficien a ambas partes.<br />
+                  <br />
+                  Descubre la forma más sencilla y efectiva de abordar tus proyectos y encontrar a los profesionales adecuados. YoChambeo: donde las habilidades se encuentran con las necesidades. ¡Comienza hoy mismo!<br />
+                  </p>
             </section>
           </div>
           <div class="swiper-pagination"></div>
@@ -158,40 +193,40 @@
       <!-- CATEGORY -->
       <section class="section category">
         <h2 class="section__title">
-          Mas buscados <br />
+          Más buscados <br />
         </h2>
         <div class="category__container container grid">
           <div class="category__data">
             <img
-              src="img/albanil.png"
+              src="img/Albañilería.png"
               alt=""
               class="category__img"
             />
-            <h3 class="category__title">Albañileria</h3>
+            <h3 class="category__title">Albañilería</h3>
             <p class="category__description">
-              Todo lo relacionado a los trabajos de construccion.
+            Trabajos de construcción y reparación estructural en albañilería para proyectos residenciales y comerciales.
             </p>
           </div>
           <div class="category__data">
             <img
-              src="img/carpinteria.png"
+              src="img/Carpintería.png"
               alt=""
               class="category__img"
             />
-            <h3 class="category__title">carpinteria</h3>
+            <h3 class="category__title">Carpintería</h3>
             <p class="category__description">
-              Todo lo relacionado a trabajos de madera.
+            Trabajos de diseño, fabricación y reparación de estructuras y elementos de madera en carpintería.
             </p>
           </div>
           <div class="category__data">
             <img
-              src="img/plomeria.png"
+              src="img/Plomería.png"
               alt=""
               class="category__img"
             />
-            <h3 class="category__title">Plomeria</h3>
+            <h3 class="category__title">Plomería</h3>
             <p class="category__description">
-              Todo lo relacionado a trabajos de plomeria.
+            Servicios especializados en instalación, mantenimiento y reparación de sistemas de fontanería y tuberías.
             </p>
           </div>
         </div>
@@ -229,216 +264,81 @@
       <section class="section trick" id="trick">
         <h2 class="section__title">Trabajos</h2>
         <div class="trick__container container grid">
-          
-          <div class="trick__content">
-                            <img
-                  class="new__img"
-              src="img/carpinteria.png"
-              alt=""
-              class="trick__img"
-            />
-            <h3 class="trick__title">Closet</h3>
-            <span class="trick__subtitle">Carpinteria</span>
-            <span class="trick__price">$ A tratar</span>
-            <button class="button trick__button">
-              <i class="bx bx-cart-alt trick__icon"></i>
-            </button>
-          </div>
-          <div class="trick__content">
-            <img
-              src="img/albanil.png"
-              alt=""
-              class="trick__img"
-            />
-            <h3 class="trick__title">Pared</h3>
-            <span class="trick__subtitle">Albañileria</span>
-            <span class="trick__price">$8.99</span>
-            <button class="button trick__button">
-              <i class="bx bx-cart-alt trick__icon"></i>
-            </button>
-          </div>
-          <div class="trick__content">
-            <img
-              src="img/plomeria.png"
-              alt=""
-              class="trick__img"
-            />
-            <h3 class="trick__title">1234</h3>
-            <span class="trick__subtitle">plomeria</span>
-            <span class="trick__price">$1500</span>
-            <button class="button trick__button">
-              <i class="bx bx-cart-alt trick__icon"></i>
-            </button>
-          </div>
-          <div class="trick__content">
-            <img
-              src="img/albanil.png"
-              alt=""
-              class="trick__img"
-            />
-            <h3 class="trick__title">hola</h3>
-            <span class="trick__subtitle">Albañileria</span>
-            <span class="trick__price">$799</span>
-            <button class="button trick__button">
-              <i class="bx bx-cart-alt trick__icon"></i>
-            </button>
-          </div>
-          <div class="trick__content">
-            <img
-              src="img/plomeria.png"
-              alt=""
-              class="trick__img"
-            />
-            <h3 class="trick__title">hola1</h3>
-            <span class="trick__subtitle">plomeria</span>
-            <span class="trick__price">$199</span>
-            <button class="button trick__button">
-              <i class="bx bx-cart-alt trick__icon"></i>
-            </button>
-          </div>
-          <div class="trick__content">
-            <img
-              src="img/carpinteria.png"
-              alt=""
-              class="trick__img"
-            />
-            <h3 class="trick__title">hola2</h3>
-            <span class="trick__subtitle">Carpinteria</span>
-            <span class="trick__price">$1799</span>
-            <button class="button trick__button">
-              <i class="bx bx-cart-alt trick__icon"></i>
-            </button>
-          </div>
+          <?php
+          $queryVacant = "CALL vacants();";
+          $vacante = mysqli_query($conexion, $queryVacant);
+          if (!$vacante) {
+            die('Query fallido: ' . mysqli_error($conexion));
+          }
+          if ($vacante->num_rows > 0){
+            while ($row = $vacante->fetch_assoc()) {
+              $nombreImg = $row['servicio'];
+              echo '<div class="trick__content">';
+              echo '<img class="new__img"';
+              echo 'src="img/' . $nombreImg . '.png" ';
+              echo 'alt="" class="trick__img" />';
+              echo '<div class="trick__content">';
+              echo '<h3 class="trick__title">' . $row['titulo'] . '</h3>';
+              echo '<span class="trick__subtitle">' . $row['servicio'] . '</span>';
+              echo '<span class="trick__price">' . $row['pago'] . '</span>';
+              echo '<button class="button trick__button">';
+              echo '<i class="bx bx-cart-alt trick__icon"></i>';
+              echo '</button>';
+              echo '</div>';
+              echo '</div>';
+            }
+          }
+          mysqli_free_result($vacante);
+          // Free any additional result sets
+          while (mysqli_next_result($conexion)) {
+              if ($result = mysqli_store_result($conexion)) {
+                  mysqli_free_result($result);
+              }
+          }
+
+          ?>
         </div>
       </section>
-      
       <!-- NEW ARRIVALS -->
       <section class="section new" id="new">
         <h2 class="section__title">Trabajadores destacados</h2>
         <div class="new__container container">
           <div class="swiper new-swiper">
             <div class="swiper-wrapper">
-              <div class="new__content swiper-slide">
-
-                <img
-                  src="img/user.png"
-                  alt=""
-                  class="new__img"
-                />
-                <h3 class="new__title">Reynaldo</h3>
-                <span class="new__subtitle">Accessory</span>
-                <div class="new__prices">
-                  <span class="new__price">$14.99</span>
-                </div>
-                <button class="button new__button">
-                  <i class="bx bx-cart-alt new__icon"></i>
-                </button>
-              </div>
-              <div class="new__content swiper-slide">
-                <div class="new__tag">
-                  <img
-                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
-                    alt=""
-                  />
-                </div>
-                <img
-                  src="img/user.png"
-                  alt=""
-                  class="new__img"
-                />
-                <h3 class="new__title">Jose</h3>
-                <span class="new__subtitle">Accessory</span>
-                <div class="new__prices">
-                  <span class="new__price">$11.99</span>
-                </div>
-                <button class="button new__button">
-                  <i class="bx bx-cart-alt new__icon"></i>
-                </button>
-              </div>
-              <div class="new__content swiper-slide">
-                <div class="new__tag">
-                  <img
-                    src="img/user.png"
-                    alt=""
-                  />
-                </div>
-                <img
-                  src="https://assets.codepen.io/7773162/new3-img.png"
-                  alt=""
-                  class="new__img"
-                />
-                <h3 class="new__title">Witch Hat</h3>
-                <span class="new__subtitle">Accessory</span>
-                <div class="new__prices">
-                  <span class="new__price">$4.99</span>
-                </div>
-                <button class="button new__button">
-                  <i class="bx bx-cart-alt new__icon"></i>
-                </button>
-              </div>
-              <div class="new__content swiper-slide">
-                <div class="new__tag">
-                  <img
-                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
-                    alt=""
-                  />
-                </div>
-                <img
-                  src="https://assets.codepen.io/7773162/new4-img.png"
-                  alt=""
-                  class="new__img"
-                />
-                <h3 class="new__title">Rip</h3>
-                <span class="new__subtitle">Accessory</span>
-                <div class="new__prices">
-                  <span class="new__price">$24.99</span>
-                </div>
-                <button class="button new__button">
-                  <i class="bx bx-cart-alt new__icon"></i>
-                </button>
-              </div>
-              <div class="new__content swiper-slide">
-                <div class="new__tag">
-                  <img
-                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
-                    alt=""
-                  />
-                </div>
-                <img
-                  src="https://assets.codepen.io/7773162/new5-img.png"
-                  alt=""
-                  class="new__img"
-                />
-                <h3 class="new__title">Maria</h3>
-                <span class="new__subtitle">Accessory</span>
-                <div class="new__prices">
-                  <span class="new__price">$5.99</span>
-                </div>
-                <button class="button new__button">
-                  <i class="bx bx-cart-alt new__icon"></i>
-                </button>
-              </div>
-              <div class="new__content swiper-slide">
-                <div class="new__tag">
-                  <img
-                    src="https://assets.codepen.io/7773162/svgviewer-output+%286%29_1.svg"
-                    alt=""
-                  />
-                </div>
-                <img
-                  src="img/user.png"
-                  alt=""
-                  class="new__img"
-                />
-                <h3 class="new__title">Ramon</h3>
-                <span class="new__subtitle">Accessory</span>
-                <div class="new__prices">
-                  <span class="new__price">$7.99</span>
-                </div>
-                <button class="button new__button">
-                  <i class="bx bx-cart-alt new__icon"></i>
-                </button>
-              </div>
+              <?php
+              $contadorTrabajador = 0;
+                $queryWorkers = "CALL best_workers();";
+                $trabajadores = mysqli_query($conexion, $queryWorkers);             
+                if (!$trabajadores) {
+                  die('Query fallido: ' . mysqli_error($conexion));
+                }
+                if ($trabajadores->num_rows > 0){
+                  while (($row = $trabajadores->fetch_assoc()) /*&& $counterWorkers > $contadorTrabajador*/ ) {
+                    //$nombreImg = $row['servicio']
+                    echo '<div class="new__content swiper-slide">';
+                    echo '<img class="new__img"';
+                    echo 'src="img/user.png" ';
+                    echo 'alt="" class="new__img" />';
+                    echo '<div class="new__content">';
+                    echo '<h3 class="new__title">' . $row['nombre'] . '</h3>';
+                    echo '<span class="new__subtitle">' . $row['servicio'] . '</span>';
+                    echo '<span class="new__price">' . $row['calificacion'] . '</span>';
+                    echo '<button class="button new__button">';
+                    echo '<i class="bx bx-cart-alt new__icon"></i>';
+                    echo '</button>';
+                    echo '</div>';
+                    echo '</div>';
+                    /*$contadorTrabajador = $contadorTrabajador + 1;*/
+                  }
+                }
+                mysqli_free_result($trabajadores);
+                // Free any additional result sets
+                while (mysqli_next_result($conexion)) {
+                    if ($result = mysqli_store_result($conexion)) {
+                        mysqli_free_result($result);
+                    }
+                }
+              ?>
             </div>
           </div>
         </div>
