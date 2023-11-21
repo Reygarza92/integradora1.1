@@ -121,6 +121,11 @@ button {
 .grid {
   display: grid;
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 .main {
   overflow: hidden; /*For animation*/
 }

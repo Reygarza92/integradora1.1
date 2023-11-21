@@ -55,10 +55,10 @@ if (isset($_POST["accion"])){
           <img src="img/YoChambeoLOGO.png" style="width:10%">
           <ul class="links">
               <span class="close-btn material-symbols-rounded">close</span>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Portfolio</a></li>
-              <li><a href="#">DevDestiny</a></li>
-              <li><a href="#">Contacto</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="about.php">Sobre YoChambeo</a></li>
+              <li><a href="devdinasty.php">DevDinasty</a></li>
+              <li><a href="contacto.php">Contacto</a></li>
           </ul>
           <button class="login-btn">LOG IN</button>
       </nav>
