@@ -33,8 +33,7 @@ IN pass VARCHAR(20)
 )
 BEGIN
 DECLARE validez INT DEFAULT NULL;
-SELECT id_usuario
-INTO validez -- Si "validez" es nulo, debe decir que revise sus datos o que se registre
+SELECT id_usuario, nombre
 FROM usuarios_general
 WHERE correo = email
 AND contraseña = pass;

@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <?php
 include("conexion.php");
-/*$queryCounterWorker = "CALL count_worker;";
-$resultCounterWorker = mysqli_query($conexion, $queryCounterWorker);
-$columnCntWrk = mysqli_fetch_array($resultCounterWorker);
-$counterWorkers = $columnCntWrk['conteo_trabajadores'];
-mysqli_free_result($resultCounterWorker);
-// Free any additional result sets
-while (mysqli_next_result($conexion)) {
-  if ($result = mysqli_store_result($conexion)) {
-      mysqli_free_result($result);
-  }
-}
-if (isset($_POST["ejecucion"])){
-  $ejecucion = $_POST["ejecucion"];
-  switch ($ejecucion){
-    case 'login':
-      $correo = $_POST["email"];
-      $contrasena = $_POST["password"];
-      $query = "CALL log_in ('$correo','$contrasena');";
-      $resultado = mysqli_query($conexion, $query);
-      $columna = mysqli_fetch_array($resultado);
-      $id_usuario = $columna['id_usuario'];
-      if ($id_usuario != NULL){
-        echo "Bienvenido";
+if (isset($_POST["accion"])){
+  $correo = $_POST["email"];
+  $contrasena = $_POST["password"];
+  $accion = $_POST["accion"];
+  switch ($accion){
+  case 'login':
+      $queryLOGIN = "CALL log_in ('$correo','$contrasena');";
+      $resultadoLOGIN = mysqli_query($conexion, $queryLOGIN);
+      $columnasLOGIN = mysqli_fetch_array($resultadoLOGIN);
+      if ($columnasLOGIN != null){ // Verificación del login
+          $id_usuario = $columnasLOGIN['id_usuario'];
+          $nombre_usuario = $columnasLOGIN['nombre'];
+          echo 'Bienvenido de vuelta, '.$nombre_usuario;
+          session_start();
+          $_SESSION['id_usuario'] = $id_usuario;
       } else {
-        echo "Verifica los datos ingresados o registrate";
+          echo 'Verifique sus datos o registrese';
       }
+      break;
+  case 'signup': // Registro
+      $nombre = $_POST['name'];
+      $apellido = $_POST['lastname'];
+      $querySIGNUP = "CALL sign_up ('$nombre', '$apellido', '$correo', '$contrasena');";
+      $queryApllySIGNUP = mysqli_query($conexion, $querySIGNUP);
+      echo 'Usuario registrado con éxito, inicie sesión';
+      break;
   }
-}*/
+} 
 ?>
 <html lang="en">
   <head>
@@ -73,17 +73,17 @@ if (isset($_POST["ejecucion"])){
           </div>
           <div class="form-content">
               <h2>LOGIN</h2>
-              <form action="#">
-                  <div class="input-field">
-                      <input type="text" required>
+              <form action="#" method="post"> <!-- Envío de datos por método POST -->
+                  <div class="input-field"> <!-- Inserción de Correo -->
+                      <input name="email" type="text" required>
                       <label>Email</label>
                   </div>
-                  <div class="input-field">
-                      <input type="password" required>
+                  <div class="input-field"> <!-- Inserción de Contraseña -->
+                      <input name="password" type="password" required>
                       <label>Password</label>
                   </div>
                   <a href="#" class="forgot-pass-link">Forgot password?</a>
-                  <button type="submit">Log In</button>
+                  <button type="submit" name="accion" value="login">Log In</button>
               </form>
               <div class="bottom-link">
                   Don't have an account?
@@ -98,13 +98,21 @@ if (isset($_POST["ejecucion"])){
           </div>
           <div class="form-content">
               <h2>SIGNUP</h2>
-              <form action="#">
-                  <div class="input-field">
-                      <input type="text" required>
+              <form action="#" method="post"> <!-- Envío de datos por método POST -->
+                  <div class="input-field"> <!-- Inserción de Nombre -->
+                      <input name="name" type="text" required>
+                      <label>Name</label>
+                  </div>
+                  <div class="input-field"> <!-- Inserción de Apellido -->
+                      <input name="lastname" type="text" required>
+                      <label>Last Name</label>
+                  </div>
+                  <div class="input-field"> <!-- Inserción de Correo -->
+                      <input name="email" type="text" required>
                       <label>Enter your email</label>
                   </div>
-                  <div class="input-field">
-                      <input type="password" required>
+                  <div class="input-field"> <!-- Inserción de Contraseña -->
+                      <input name="password" type="password" required>
                       <label>Create password</label>
                   </div>
                   <div class="policy-text">
@@ -114,7 +122,7 @@ if (isset($_POST["ejecucion"])){
                           <a href="#" class="option">Terms & Conditions</a>
                       </label>
                   </div>
-                  <button type="submit">Sign Up</button>
+                  <button type="submit" name="accion" value="signup">Sign Up</button>
               </form>
               <div class="bottom-link">
                   Already have an account? 
