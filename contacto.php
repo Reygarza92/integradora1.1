@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php include("conexion.php"); ?>
+<?php include("mensaje.php"); ?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -119,6 +120,36 @@
               </div>
           </div>
       </div>
+  </div>
+
+    <div class="wrapper">
+    <header>Envianos un mensaje</header>
+    <form action="#">
+      <div class="dbl-field">
+        <div class="field">
+          <input type="text" name="name" placeholder="Nombre">
+          <i class='fas fa-user'></i>
+        </div>
+        <div class="field">
+          <input type="text" name="email" placeholder="Correo">
+          <i class='fas fa-envelope'></i>
+        </div>
+      </div>
+      <div class="dbl-field">
+        <div class="field">
+          <input type="text" name="phone" placeholder="Telefono">
+          <i class='fas fa-phone-alt'></i>
+        </div>
+      </div>
+      <div class="message">
+        <textarea placeholder="Escribenos" name="message"></textarea>
+
+      </div>
+      <div class="button-area">
+        <button type="submit">Enviar</button>
+        <span></span>
+      </div>
+    </form>
   </div>
 </body>
 </html>
