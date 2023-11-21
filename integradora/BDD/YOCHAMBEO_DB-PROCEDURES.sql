@@ -456,3 +456,20 @@ END IF;
 END;
 //
 DELIMITER ;
+
+-- TRIGGER PARA CONTAR USUARIOS REGISTRADOS POR DIA
+
+DELIMITER //
+
+CREATE TRIGGER actualizar_visitas 
+AFTER INSERT ON usuarios_general
+FOR EACH ROW
+BEGIN
+    IF (SELECT COUNT(*) FROM conteo WHERE fecha = CURDATE()) > 0 THEN
+        UPDATE conteo SET cantidad = cantidad + 1 WHERE fecha = CURDATE();
+    ELSE
+        INSERT INTO conteo (fecha, cantidad) VALUES (CURDATE(), 1);
+    END IF;
+END //
+
+DELIMITER ;

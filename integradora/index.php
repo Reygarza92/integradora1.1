@@ -99,6 +99,25 @@ if (isset($_POST["accion"])){
           <div class="form-content">
               <h2>SIGNUP</h2>
               <form action="#" method="post"> <!-- Envío de datos por método POST -->
+                  <h4>As of now, 
+                        <?php 
+                        $queryALL = "SELECT COUNT(*) FROM usuarios_general;"; // Cantidad de personas totales registradas
+                        $resultadoALL = mysqli_query($conexion, $queryALL);
+                        $columnasALL = mysqli_fetch_array($resultadoALL);
+                        echo $columnasALL['COUNT(*)'];
+                        ?>
+                        people have signed up, 
+                        <?php 
+                        $queryCOUNT = "SELECT cantidad FROM conteo WHERE fecha = CURDATE();"; // Cantidad de personas registradas hoy (Trigger)
+                        $resultadoCOUNT = mysqli_query($conexion, $queryCOUNT);
+                        $columnasCOUNT = mysqli_fetch_array($resultadoCOUNT);
+                        if ($columnasCOUNT != null){
+                            echo $columnasCOUNT['cantidad'];
+                        } else {
+                            echo '0';
+                        }
+                        ?>
+                         member(s) have signed up today!</h4>
                   <div class="input-field"> <!-- Inserción de Nombre -->
                       <input name="name" type="text" required>
                       <label>Name</label>

@@ -101,6 +101,12 @@ CREATE TABLE trabajos_completados(
     FOREIGN KEY (id_usuario_trabajador) REFERENCES usuarios_general(id_usuario) ON UPDATE CASCADE
 );
 
+CREATE TABLE conteo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE,
+    cantidad INT DEFAULT 0
+);
+
 /* Para llenar los datos habría que ver primero si ofrece, necesita servicios y/o empleo con un IF que revise el dato ing*/
 
 /* Para logear debe de pedir correo y contraseña y debe revisarlos en la BDD */
