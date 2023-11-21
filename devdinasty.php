@@ -130,7 +130,7 @@
                 <h2>Reynaldo GARZA</h2>
                 <br />
                   <img
-                    src="img/preview.jpg"
+                    src="img/Rey.jpg"
                     alt=""
                     style="width = 50%"
                     class="" /> 
@@ -143,7 +143,7 @@
                 <h2>Juan MARTÍNEZ</h2>
                 <br />
                   <img
-                    src="img/preview.jpg"
+                    src="img/JAM.jpg"
                     alt=""
                     style="width = 50%"
                     class="" /> 
