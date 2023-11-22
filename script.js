@@ -182,11 +182,11 @@ sr.reveal(`.about__data, .discount__img`, { origin: "left" });
 sr.reveal(`.about__img, .discount__data`, { origin: "right" });
 
 
-const hideMenuBtn = navContainerMenu.querySelector(".close-btn");
-const showPopupBtn = document.querySelector(".login-btn");
-const formPopup = document.querySelector(".form-popup");
-const hidePopupBtn = formPopup.querySelector(".close-btn");
-const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
+//const hideMenuBtn = navContainerMenu.querySelector(".close-btn");
+//const showPopupBtn = document.querySelector(".login-btn");
+//const formPopup = document.querySelector(".form-popup");
+//const hidePopupBtn = formPopup.querySelector(".close-btn");
+//const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
 
 // Show mobile menu
 hamburgerBtn.addEventListener("click", () => {

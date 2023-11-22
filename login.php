@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<?php include("conexion.php"); ?>
-<?php //include("mensaje.php"); ?>
+<?php
+include("conexion.php");
+if (isset($_POST["accion"])){
+    $correo = $_POST["email"];
+    $contrasena = $_POST["password"];
+    $accion = $_POST["accion"];
+    switch ($accion){
+    case 'login':
+        $queryLOGIN = "CALL log_in ('$correo','$contrasena');";
+        $resultadoLOGIN = mysqli_query($conexion, $queryLOGIN);
+        $columnasLOGIN = mysqli_fetch_array($resultadoLOGIN);
+        if ($columnasLOGIN != null){ // Verificación del login
+            $id_usuario = $columnasLOGIN['id_usuario'];
+            $nombre_usuario = $columnasLOGIN['nombre'];
+            $echoLOGIN = 'Bienvenido de vuelta, '.$nombre_usuario;
+            session_start();
+            $_SESSION['id_usuario'] = $id_usuario;
+        } else {
+            // echo '<h4 style="margin: top 120px;">Verifique sus datos o registrese<h4>';
+            $echoLOGIN = 'Verifique sus datos o registrese';
+        }
+        break;
+    case 'signup':
+        $nombre = $_POST['name'];
+        $apellido = $_POST['lastname'];
+        $querySIGNUP = "CALL sign_up ('$nombre', '$apellido', '$correo', '$contrasena');";
+        $queryApllySIGNUP = mysqli_query($conexion, $querySIGNUP);
+        echo 'Usuario registrado con éxito, inicie sesión';
+        break;
+    }
+} 
+?>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>DevDinasty</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
     <link
       rel="stylesheet"
       href="https://assets.codepen.io/7773162/swiper-bundle.min.css"
@@ -17,11 +48,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="css/contra.css">
-    <link rel="stylesheet" href="css/contacto.css">
-  </head>
-  <body>
-    <!-- HEADER -->
-  <header>
+</head>
+<body>
+<header>
       <nav class="navbar">
           <span class="hamburger-btn material-symbols-rounded">menu</span>
           <img src="img/YoChambeoLOGO.png" style="width:10%">
@@ -35,52 +64,59 @@
           <a href="login.php"><button class="login-btn" href="login.php">LOG IN</button></a>
       </nav>
   </header>
-  <div class="blur-bg-overlay"></div>
-  <div class="form-popup">
-      <span class="close-btn material-symbols-rounded">close</span>
-      <div class="form-box login">
-          <div class="form-details">
+<div class="form-box login" style="margin-top:150px";>
+<div style="margin-top:120px;">
+      <h2><?php
+      if (isset($_POST["accion"])){
+      echo $echoLOGIN;
+      }
+      ?></h2>
+      </div>
+          <div>
               <h2>Welcome Back</h2>
-              <p>Please log in using your personal information to stay connected with us.</p>
+              <p style="display: flex; justify-content:center;">Please log in using your personal information to stay connected with us.</p>
           </div>
           <div class="form-content">
-              <h2>LOGIN</h2>
-              <form action="#" method="post"> <!-- Envío de datos por método POST -->
-                  <div class="input-field"> <!-- Inserción de Correo -->
+              <h2 action="login.php">LOGIN</h2>
+              <form action="login.php" method="post">
+                  <div class="input-field" style="background-color:#fff;">
                       <input name="email" type="text" required>
                       <label>Email</label>
                   </div>
-                  <div class="input-field"> <!-- Inserción de Contraseña -->
+                  <div class="input-field" style="background-color:#fff;">
                       <input name="password" type="password" required>
                       <label>Password</label>
                   </div>
                   <a href="#" class="forgot-pass-link">Forgot password?</a>
                   <button type="submit" name="accion" value="login">Log In</button>
               </form>
-              <div class="bottom-link">
-                  Don't have an account?
-                  <a href="#" id="signup-link">Signup</a>
-              </div>
-          </div>
+              <a href="signup.php"><button class="hamburger-btn login-btn" href="signup.php">Sign Up</button></a>
       </div>
-      <div class="form-box signup">
-          <div class="form-details">
+      <!--<div class="form-box signup" style="margin-top:200px;">
+          <div>
               <h2>Create Account</h2>
-              <p>To become a part of our community, please sign up using your personal information.</p>
+              <p style="display: flex; justify-content:center;">To become a part of our community, please sign up using your personal information.</p>
           </div>
           <div class="form-content">
               <h2>SIGNUP</h2>
-              <form action="#" method="post"> <!-- Envío de datos por método POST -->
-                  <h4>As of now, 
+              <form action="#" method="post">
+                    <h4>As of now, 
                         <?php 
-                        $queryALL = "SELECT COUNT(*) FROM usuarios_general;"; // Cantidad de personas totales registradas
+                        /*$queryALL = "SELECT COUNT(*) FROM usuarios_general;";
                         $resultadoALL = mysqli_query($conexion, $queryALL);
                         $columnasALL = mysqli_fetch_array($resultadoALL);
                         echo $columnasALL['COUNT(*)'];
+                        mysqli_free_result($resultadoALL);
+                        // Free any additional result sets
+                        while (mysqli_next_result($conexion)) {
+                            if ($result = mysqli_store_result($conexion)) {
+                                mysqli_free_result($result);
+                            }
+                        }
                         ?>
                         people have signed up, 
                         <?php 
-                        $queryCOUNT = "SELECT cantidad FROM conteo WHERE fecha = CURDATE();"; // Cantidad de personas registradas hoy (Trigger)
+                        $queryCOUNT = "SELECT cantidad FROM conteo WHERE fecha = CURDATE();";
                         $resultadoCOUNT = mysqli_query($conexion, $queryCOUNT);
                         $columnasCOUNT = mysqli_fetch_array($resultadoCOUNT);
                         if ($columnasCOUNT != null){
@@ -88,21 +124,28 @@
                         } else {
                             echo '0';
                         }
+                        mysqli_free_result($resultadoCOUNT);
+                        // Free any additional result sets
+                        while (mysqli_next_result($conexion)) {
+                            if ($result = mysqli_store_result($conexion)) {
+                                mysqli_free_result($result);
+                            }
+                        }*/
                         ?>
                          member(s) have signed up today!</h4>
-                  <div class="input-field"> <!-- Inserción de Nombre -->
+                  <div class="input-field">
                       <input name="name" type="text" required>
                       <label>Name</label>
                   </div>
-                  <div class="input-field"> <!-- Inserción de Apellido -->
+                  <div class="input-field">
                       <input name="lastname" type="text" required>
                       <label>Last Name</label>
                   </div>
-                  <div class="input-field"> <!-- Inserción de Correo -->
+                  <div class="input-field">
                       <input name="email" type="text" required>
                       <label>Enter your email</label>
                   </div>
-                  <div class="input-field"> <!-- Inserción de Contraseña -->
+                  <div class="input-field">
                       <input name="password" type="password" required>
                       <label>Create password</label>
                   </div>
@@ -115,43 +158,7 @@
                   </div>
                   <button type="submit" name="accion" value="signup">Sign Up</button>
               </form>
-              <div class="bottom-link">
-                  Already have an account? 
-                  <a href="#" id="login-link">Login</a>
-              </div>
           </div>
-      </div>
-  </div>
-
-    <div class="wrapper" style="margin-top:120px;">
-    <form action="#">
-      <h3>Envianos un mensaje</h3>
-      <div class="dbl-field">
-        <div class="field">
-          <input type="text" name="name" placeholder="Nombre">
-          <i class='fas fa-user'></i>
-        </div>
-        <div class="field">
-          <input type="text" name="email" placeholder="Correo">
-          <i class='fas fa-envelope'></i>
-        </div>
-      </div>
-      <div class="dbl-field">
-        <div class="field">
-          <input type="text" name="phone" placeholder="Telefono">
-          <i class='fas fa-phone-alt'></i>
-        </div>
-      </div>
-      <div class="message">
-        <textarea placeholder="Escribenos" name="message"></textarea>
-
-      </div>
-      <div class="button-area">
-        <button type="submit">Enviar</button>
-        <span></span>
-      </div>
-    </form>
-  </div>
-    <script src="js/contacto.js"></script>
+      </div> -->
 </body>
 </html>
