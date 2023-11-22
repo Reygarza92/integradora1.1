@@ -30,7 +30,7 @@
               <li><a href="devdinasty.php">DevDinasty</a></li>
               <li><a href="contacto.php">Contacto</a></li>
           </ul>
-          <button class="login-btn">LOG IN</button>
+          <a href="login.php"><button class="login-btn" href="login.php">LOG IN</button></a>
       </nav>
   </header>
   <div class="blur-bg-overlay"></div>
@@ -156,7 +156,7 @@
                 <h2>Fernando SOTO</h2>
                 <br />
                   <img
-                    src="img/preview.jpg"
+                    src="img/Soto.jpg"
                     alt=""
                     style="width = 50%"
                     class="" /> 
